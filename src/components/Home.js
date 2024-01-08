@@ -15,14 +15,31 @@ const movingGradient = keyframes`
 `;
 
 const fadeInOut = keyframes`
-  0%, 100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 `;
 
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+
+const typewriter = keyframes`
+  from { max-width: 0; }
+  to { max-width: 100%; }
+`;
+
+const blinkCursor = keyframes`
+  50% { border-color: transparent; }
+`;
 
 const MovingDot = styled.div`
   position: absolute;
@@ -107,25 +124,35 @@ const Greeting = styled.h1`
   font-size: 3.5rem;
   margin: 0;
   color: #fff;
-  line-height: 1.2; // Improve line height for better readability
-  // Apply padding to individual text elements for more control
-  padding: 0.5rem 0; // Vertical padding for Greeting
-  
+  line-height: 1.2; 
+  padding: 0.5rem 0; 
+  animation: ${fadeIn} 4s ease forwards;
 `;
 
 const Name = styled.span`
-  color: #4dd0e1;
-  display: block;
+  display: inline-block;
   font-weight: bold;
-  font-size: 4rem; // Larger font size for name for emphasis
-  padding: 0.5rem 0; // Vertical padding for Name
+  font-size: 5rem;
+  color: #4dd0e1;
 `;
+
+
+const NameContainer = styled.div`
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 0;
+  border-right: 3px solid #4dd0e1;
+  animation: ${typewriter} 2s steps(40, end) 0.5s forwards, 
+             ${blinkCursor} 750ms step-end infinite alternate;
+`;
+
 
 const Subtitle = styled.h2`
   font-size: 1.8rem;
   font-weight: 300;
   color: #ddd;
-  padding: 0.5rem 0; // Vertical padding for Subtitle
+  padding: 0.5rem 0;
 `;
 
 const DownloadButton = styled.a`
@@ -171,17 +198,20 @@ const Home = ({ nightMode }) => {
     }, []);
   
     return (
-      <HomeContainer nightMode={nightMode}>
-        {generateDots(20, contentRect)} {/* Generates 20 dots avoiding the content area */}
-        <Content ref={contentRef}>
-          <Greeting>Hello, <Name>I'm Sushant Tiwari</Name></Greeting>
-          <Subtitle>Full Stack Developer | Tech Enthusiast</Subtitle>
-          <DownloadButton href="path-to-your-resume.pdf" download>
-            Download CV
-          </DownloadButton>
-        </Content>
-      </HomeContainer>
-    );
-  };
+        <HomeContainer nightMode={nightMode}>
+          {generateDots(20, contentRect)}
+          <Content ref={contentRef}>
+            <Greeting>Hello,</Greeting>
+            <NameContainer>
+              <Name>I'm Sushant Tiwari</Name>
+            </NameContainer>
+            <Subtitle>Full Stack Developer | Tech Enthusiast</Subtitle>
+            <DownloadButton href="path-to-your-resume.pdf" download>
+              Download CV
+            </DownloadButton>
+          </Content>
+        </HomeContainer>
+      );
+    };
   
 export default Home;
