@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
@@ -23,6 +23,9 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+  background-color: ${props => props.scrolled ? 'white' : 'transparent'};
+  transition: background-color 0.3s; 
+  color: ${props => props.scrolled ? 'black' : 'white'};
   animation: ${fadeIn} 0.5s ease-out;
 `;
 
@@ -34,14 +37,15 @@ const NavLinksContainer = styled.div`
 const NavLink = styled.a`
   margin: 0 15px;
   cursor: pointer;
-  color: white;
+  color: ${props => props.scrolled ? 'black' : 'white'}; // Dynamic color based on scrolled state
   font-size: 1em;
   text-transform: uppercase;
   text-decoration: none;
   transition: color 0.3s ease;
+  font-family: "Anonymous Pro", monospace !important;
 
   &:hover {
-    color: #4dd0e1;
+    color: ${props => props.scrolled ? '#4dd0e1' : 'white'}; // Dynamic hover color
     text-decoration: none;
   }
 `;
@@ -127,36 +131,55 @@ const Checkbox = styled.input`
 `;
 
 const Navbar = ({ sections, toggleNightMode, nightMode }) => {
-  const scrollToSection = (sectionRef) => {
-    window.scrollTo({
-      top: sectionRef.current.offsetTop,
-      behavior: 'smooth'
-    });
-  };
+    const [scrolled, setScrolled] = useState(false);
+  
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+  
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
 
-  return (
-    <Nav nightMode={nightMode}>
-      <NavLinksContainer>
-        {sections.map((section) => (
-          <NavLink key={section.label} onClick={() => scrollToSection(section.ref)}>
-            {section.label}
-          </NavLink>
-        ))}
-      </NavLinksContainer>
-      <ToggleSlider>
-        <Checkbox
-          type="checkbox"
-          checked={nightMode}
-          onChange={toggleNightMode}
-          id="nightModeCheckbox"
-        />
-        <Slider nightMode={nightMode}>
-          <SunIcon nightMode={nightMode} />
-          <MoonIcon nightMode={nightMode} />
-        </Slider>
-      </ToggleSlider>
-    </Nav>
-  );
+    // Define the scrollToSection function
+    const scrollToSection = (sectionRef) => {
+      window.scrollTo({
+        top: sectionRef.current.offsetTop,
+        behavior: 'smooth'
+      });
+    };
+
+    return (
+      <Nav scrolled={scrolled}>
+        <NavLinksContainer>
+          {sections.map((section) => (
+            <NavLink key={section.label} onClick={() => scrollToSection(section.ref)}scrolled={scrolled}>
+              {section.label}
+            </NavLink>
+          ))}
+        </NavLinksContainer>
+        <ToggleSlider>
+          <Checkbox
+            type="checkbox"
+            checked={nightMode}
+            onChange={toggleNightMode}
+            id="nightModeCheckbox"
+          />
+          <Slider nightMode={nightMode}>
+            <SunIcon nightMode={nightMode} />
+            <MoonIcon nightMode={nightMode} />
+          </Slider>
+        </ToggleSlider>
+      </Nav>
+    );
 };
 
 export default Navbar;

@@ -126,14 +126,16 @@ const Greeting = styled.h1`
   color: #fff;
   line-height: 1.2; 
   padding: 0.5rem 0; 
-  animation: ${fadeIn} 4s ease forwards;
+  font-family: "Anonymous Pro", monospace!important;
+  animation: ${fadeIn} 3s ease forwards;
 `;
 
 const Name = styled.span`
   display: inline-block;
   font-weight: bold;
-  font-size: 5rem;
+  font-size: 4rem;
   color: #4dd0e1;
+  font-family: "Anonymous Pro", monospace!important;
 `;
 
 
@@ -153,6 +155,7 @@ const Subtitle = styled.h2`
   font-weight: 300;
   color: #ddd;
   padding: 0.5rem 0;
+  animation: ${fadeIn} 3s ease forwards;
 `;
 
 const DownloadButton = styled.a`
@@ -165,8 +168,9 @@ const DownloadButton = styled.a`
   font-weight: bold;
   transition: transform 0.3s ease, background-color 0.3s;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  // Apply padding to button for more control
   padding: 1rem 2.5rem; // Increased horizontal padding for the button
+  font-family: "Anonymous Pro", monospace!important;
+  animation: ${fadeIn} 3s ease forwards;
 
   &:hover {
     transform: translateY(-2px);
@@ -203,7 +207,7 @@ const Home = ({ nightMode }) => {
           <Content ref={contentRef}>
             <Greeting>Hello,</Greeting>
             <NameContainer>
-              <Name>I'm Sushant Tiwari</Name>
+              <Name>I'm Sushant Tiwari.</Name>
             </NameContainer>
             <Subtitle>Full Stack Developer | Tech Enthusiast</Subtitle>
             <DownloadButton href="path-to-your-resume.pdf" download>
