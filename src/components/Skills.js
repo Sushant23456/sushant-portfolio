@@ -17,7 +17,7 @@ const SkillName = styled.span`
 `;
 
 const SkillLevel = styled.div`
-  background-color: ${(props) => (props.nightMode ? '#555' : '#e0e0e0')}; // Dark background for night mode
+  background-color: ${props => (props.nightMode ? '#555' : '#ddd')}; // Dark background for night mode
   height: 30px;
   border-radius: 5px;
   position: relative;
@@ -29,7 +29,7 @@ const SkillLevel = styled.div`
 const SkillFill = styled.div`
   height: 100%;
   border-radius: 5px;
-  background-color: ${(props) => (props.nightMode ? '#0bd' : '#007bff')}; // Brighter blue for night mode
+  background-color: ${props => (props.nightMode ? '#0bd' : '#3498db')};  // Brighter blue for night mode
   transition: width 2s ease;
   width: ${(props) => props.width};
 `;
@@ -45,6 +45,8 @@ const SkillsContainer = styled.section`
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px; // Added gap for spacing between columns
+  background: ${props => (props.nightMode ? '#333' : '#f9f9f9')}; // Dark background for night mode
+  color: ${props => (props.nightMode ? '#fff' : '#333')};
 `;
 
 const SkillsColumn = styled.div`
@@ -54,7 +56,7 @@ const SkillsColumn = styled.div`
 `;
 
 const SkillsHeading = styled.h2`
-  color: #333;
+color: ${props => (props.nightMode ? '#fff' : '#333')};
   font-size: 2em;
   text-align: center;
   width: 100%; // Ensure the heading spans the full width
@@ -102,14 +104,14 @@ const Skills = ({ nightMode }) => {
   const rightSkills = skillsData.slice(4);
 
   return (
-    <SkillsContainer>
-      <SkillsHeading>Technical Expertise</SkillsHeading>
-      <SkillsColumn>
+    <SkillsContainer nightMode={nightMode}>
+      <SkillsHeading nightMode={nightMode}>Technical Expertise</SkillsHeading>
+      <SkillsColumn nightMode={nightMode}>
         {leftSkills.map((skill, index) => (
           <Skill key={index} name={skill.name} level={skill.level} nightMode={nightMode} />
         ))}
       </SkillsColumn>
-      <SkillsColumn>
+      <SkillsColumn nightMode={nightMode}>
         {rightSkills.map((skill, index) => (
           <Skill key={index} name={skill.name} level={skill.level} nightMode={nightMode} />
         ))}
