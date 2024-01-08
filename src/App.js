@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import About from './components/About';
+import Skills from './components/Skills';
 
 function App() {
+  const homeRef = useRef(null);
+  const aboutRef = useRef(null);
+  const skillsRef = useRef(null);
+  const projectsRef = useRef(null);  // Corrected refs
+  const timelineRef = useRef(null);  // Corrected refs
+  const contactRef = useRef(null);   // Corrected refs
+  const [nightMode, setNightMode] = useState(false);
+
+  const toggleNightMode = () => {
+    setNightMode(!nightMode);
+  };
+
+  useEffect(() => {
+    document.body.className = nightMode ? 'night-mode' : '';
+  }, [nightMode]);
+
+  const sections = [
+    { label: 'Home', ref: homeRef },
+    { label: 'About', ref: aboutRef },
+    { label: 'Skills', ref: skillsRef },
+    { label: 'Projects', ref: projectsRef },  // Corrected refs
+    { label: 'Timeline', ref: timelineRef },  // Corrected refs
+    { label: 'Contact', ref: contactRef },    // Corrected refs
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${nightMode ? 'night-mode' : ''}`}>
+      <Navbar sections={sections} toggleNightMode={toggleNightMode} nightMode={nightMode} />
+      <div ref={homeRef}><Home nightMode={nightMode} /></div>
+      <div ref={aboutRef}><About nightMode={nightMode} /></div>
+      <div ref={skillsRef}><Skills nightMode={nightMode} /></div>
+      <div ref={projectsRef}> {/* Projects component */}</div>
+      <div ref={timelineRef}> {/* Timeline component */}</div>
+      <div ref={contactRef}> {/* Contact component */}</div>
+      {/* ... rest of your components */}
     </div>
   );
 }

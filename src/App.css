@@ -1,3 +1,8 @@
+body {
+  background-color: #fff;
+  color: #333;
+}
+
 .App {
   text-align: center;
 }
@@ -5,6 +10,26 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+
+body.night-mode body{
+  background-color: #333;
+  color: #fff;
+}
+
+body.night-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+body.night-mode nav {
+  background-color: #222;
+
+}
+body.night-mode a {
+  color: #ddd; 
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
