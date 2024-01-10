@@ -1,0 +1,105 @@
+body {
+  background: #f9f9f9;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: black;
+}
+
+.title {
+  font-size: 4em;
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+h3 {
+  padding-top: 0.25em;
+}
+
+.paragraph {
+  text-align: center;
+  text-decoration: double;
+}
+
+.vertical-timeline::before {
+  background: #3498db !important;
+}
+
+.vertical-timeline-element-content {
+  box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.25),0 0.4em 1.25em 0 rgba(0, 0, 0, 0.15) !important;
+  padding: 2em 3em !important;
+}
+
+.date {
+  color: rgb(201, 251, 255);
+}
+
+#description {
+  margin: 1.5em 0 2em 0;
+}
+
+.button {
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  color: white;
+}
+
+.workButton {
+  background: #3498db !important;
+}
+
+.workButton:hover {
+  background-color: #0ac593;
+}
+
+.schoolButton {
+  background: #3498db !important;
+}
+
+.schoolButton:hover {
+  background: #3498db !important;
+}
+
+/* Dark mode */
+.night-mode {
+  background: #333; /* Dark background for night mode */
+  color: #fff; /* Light text for night mode */
+}
+
+
+.night-mode .title, .night-mode h3, .night-mode .date, .night-mode #description {
+  color: #fff; 
+}
+
+.night-mode .paragraph {
+  color: #ccc;
+}
+
+.night-mode .vertical-timeline-element-content {
+  background: #444; 
+  color: #fff; 
+}
+
+.night-mode .vertical-timeline::before {
+  background: #3498db !important;
+}
+
+.night-mode .button {
+  background-color: #555; /* Darker background for buttons in night mode */
+  color: #fff; /* Text color for buttons in night mode */
+}
+
+.night-mode .button:hover {
+  background-color: #777; /* Hover color for buttons in night mode */
+}
+
+
+
+@media only screen and (max-width: 1700px) {
+  .vertical-timeline-element-date {
+    display: block !important;
+    float: none !important;
+    color: rgb(44, 44, 44);
+    margin-top: 1.5em;
+  }
+}

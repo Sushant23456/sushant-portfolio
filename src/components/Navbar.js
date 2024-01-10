@@ -14,7 +14,7 @@ const fadeIn = keyframes`
 `;
 
 const Nav = styled.nav`
-  color: white;
+  color: white; // Default text color set to white
   padding: 20px 30px;
   position: fixed;
   top: 0;
@@ -23,21 +23,32 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  background-color: ${props => props.scrolled ? 'white' : 'transparent'};
+  background-color: ${props => props.nightMode && props.scrolled ? '#282c34' : (props.scrolled ? 'white' : 'transparent')};
+
+  // Override text color when scrolled in day mode
+  color: ${props => props.scrolled && !props.nightMode ? 'black' : 'white'};
+
+  a, span, div { 
+    color: inherit;
+  }
+
   transition: background-color 0.3s; 
-  color: ${props => props.scrolled ? 'black' : 'white'};
   animation: ${fadeIn} 0.5s ease-out;
 `;
+
 
 const NavLinksContainer = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 768px) {
+    display: none; // Hide the links on small screens
+  }
 `;
 
 const NavLink = styled.a`
   margin: 0 15px;
   cursor: pointer;
-  color: ${props => props.scrolled ? 'black' : 'white'}; // Dynamic color based on scrolled state
+  color: ${props => props.scrolled ? 'black' : 'white'};
   font-size: 1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -45,7 +56,7 @@ const NavLink = styled.a`
   font-family: "Anonymous Pro", monospace !important;
 
   &:hover {
-    color: ${props => props.scrolled ? '#4dd0e1' : 'white'}; // Dynamic hover color
+    color: ${props => props.scrolled ? '#4dd0e1' : 'white'};
     text-decoration: none;
   }
 `;
@@ -66,6 +77,31 @@ const ToggleSlider = styled.label`
   height: 34px;
   margin-right: 70px;
 `;
+
+
+const HamburgerIcon = styled.div`
+  display: none;
+  cursor: pointer;
+  
+  @media (max-width: 768px) {
+    display: block; // Show the hamburger icon on small screens
+  }
+`;
+
+const MobileNavLinksContainer = styled.div`
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: ${props => props.scrolled ? '60px' : '80px'};
+  width: 100%;
+  background-color: white; // Assuming a light theme for the mobile menu
+
+  @media (max-width: 768px) {
+    display: flex; // Display the container on small screens
+  }
+`;
+
 
 const Slider = styled.span`
   position: absolute;
@@ -132,6 +168,7 @@ const Checkbox = styled.input`
 
 const Navbar = ({ sections, toggleNightMode, nightMode }) => {
     const [scrolled, setScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -158,7 +195,11 @@ const Navbar = ({ sections, toggleNightMode, nightMode }) => {
     };
 
     return (
-      <Nav scrolled={scrolled}>
+        <>
+      <Nav scrolled={scrolled} nightMode={nightMode}>
+        <HamburgerIcon onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          {/* Here you could use a hamburger icon from react-icons or another library */}
+        </HamburgerIcon>
         <NavLinksContainer>
           {sections.map((section) => (
             <NavLink key={section.label} onClick={() => scrollToSection(section.ref)}scrolled={scrolled}>
@@ -179,6 +220,23 @@ const Navbar = ({ sections, toggleNightMode, nightMode }) => {
           </Slider>
         </ToggleSlider>
       </Nav>
+      {isMobileMenuOpen && (
+        <MobileNavLinksContainer scrolled={scrolled}>
+          {sections.map((section) => (
+            <NavLink
+              key={section.label}
+              onClick={() => {
+                scrollToSection(section.ref);
+                setIsMobileMenuOpen(false);
+              }}
+              scrolled={scrolled}
+            >
+              {section.label}
+            </NavLink>
+          ))}
+        </MobileNavLinksContainer>
+      )}
+    </>
     );
 };
 

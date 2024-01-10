@@ -58,33 +58,6 @@ const MovingDot = styled.div`
   }
 `;
 
-const generateDots = (numDots, contentRect) => {
-    const dots = [];
-    for (let i = 0; i < numDots; i++) {
-      // Avoid placing dots over the content
-      let left = Math.random() * 100;
-      let top = Math.random() * 100;
-  
-      // Check if the dot is within the content area
-      if (top > contentRect.top && top < contentRect.bottom && left > contentRect.left && left < contentRect.right) {
-        // Adjust position if it is
-        top = contentRect.top - 10; // Move it above the content area
-      }
-  
-      dots.push(
-        <MovingDot
-          key={i}
-          left={`${left}vw`}
-          top={`${top}vh`}
-          delay={Math.random() * 10}
-          size="10px"
-        />
-      );
-    }
-    return dots;
-  };
-  
-
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -136,6 +109,7 @@ const Name = styled.span`
   font-size: 4rem;
   color: #4dd0e1;
   font-family: "Anonymous Pro", monospace!important;
+  margin-top: 1.1rem;
 `;
 
 
@@ -184,6 +158,32 @@ const DownloadButton = styled.a`
   }
 `;
 
+const generateDots = (numDots, contentRect) => {
+    const dots = [];
+    for (let i = 0; i < numDots; i++) {
+      // Avoid placing dots over the content
+      let left = Math.random() * 100;
+      let top = Math.random() * 100;
+  
+      // Check if the dot is within the content area
+      if (top > contentRect.top && top < contentRect.bottom && left > contentRect.left && left < contentRect.right) {
+        // Adjust position if it is
+        top = contentRect.top - 10; // Move it above the content area
+      }
+  
+      dots.push(
+        <MovingDot
+          key={i}
+          left={`${left}vw`}
+          top={`${top}vh`}
+          delay={Math.random() * 10}
+          size="10px"
+        />
+      );
+    }
+    return dots;
+  };
+  
 
 const Home = ({ nightMode }) => {
     const [contentRect, setContentRect] = useState({ top: 0, bottom: 100, left: 0, right: 100 });

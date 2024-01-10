@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const SkillContainer = styled.div`
   margin-bottom: 1em;
-  color: ${(props) => (props.nightMode ? '#fff' : '#333')}; // Adjust text color based on night mode
+  color: ${(props) => (props.nightMode ? '#fff' : '#333')};
 `;
 
 const SkillHeader = styled.div`
@@ -17,7 +17,7 @@ const SkillName = styled.span`
 `;
 
 const SkillLevel = styled.div`
-  background-color: ${props => (props.nightMode ? '#555' : '#ddd')}; // Dark background for night mode
+  background-color: ${props => (props.nightMode ? '#555' : '#ddd')}; 
   height: 30px;
   border-radius: 5px;
   position: relative;
@@ -29,7 +29,7 @@ const SkillLevel = styled.div`
 const SkillFill = styled.div`
   height: 100%;
   border-radius: 5px;
-  background-color: ${props => (props.nightMode ? '#0bd' : '#3498db')};  // Brighter blue for night mode
+  background-color: ${props => (props.nightMode ? '#0bd' : '#3498db')}; 
   transition: width 2s ease;
   width: ${(props) => props.width};
 `;
@@ -45,21 +45,21 @@ const SkillsContainer = styled.section`
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px; // Added gap for spacing between columns
-  background: ${props => (props.nightMode ? '#333' : '#f9f9f9')}; // Dark background for night mode
+  background: ${props => (props.nightMode ? '#333' : '#f9f9f9')};
   color: ${props => (props.nightMode ? '#fff' : '#333')};
 `;
 
 const SkillsColumn = styled.div`
   display: flex;
   flex-direction: column;
-  flex-basis: calc(50% - 10px); // Subtracting the gap size to maintain proper spacing
+  flex-basis: calc(50% - 10px); 
 `;
 
 const SkillsHeading = styled.h2`
 color: ${props => (props.nightMode ? '#fff' : '#333')};
   font-size: 2em;
   text-align: center;
-  width: 100%; // Ensure the heading spans the full width
+  width: 100%;
   margin-bottom: 1em;
 `;
 
@@ -89,7 +89,7 @@ const Skill = ({ name, level, nightMode }) => {
 
 const Skills = ({ nightMode }) => {
   const skillsData = [
-    { name: 'React', level: 80 },
+    { name: 'React.js', level: 80 },
     { name: 'JavaScript', level: 70 },
     { name: 'CSS', level: 60 },
     { name: 'HTML', level: 70 },
@@ -99,7 +99,6 @@ const Skills = ({ nightMode }) => {
     { name: 'Java', level: 70 },
   ];
 
-  // Split the skillsData into two arrays for left and right columns
   const leftSkills = skillsData.slice(0, 4);
   const rightSkills = skillsData.slice(4);
 
