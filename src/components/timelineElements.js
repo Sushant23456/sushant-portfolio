@@ -55,9 +55,12 @@ let timelineElements = [
       location: "Remote",
       description:
         "Hotel Booking System: Designed hotel booking webpage like booking.com. Used HTML, CSS, JavaScript, Python Flask, Bootstrap, and MySQL. ",
+        buttonText: "View My Personal Projects",  
       date: "July 2022 - December 2022",
       icon: "work",
     },
   ];
+
+  
   
   export default timelineElements;

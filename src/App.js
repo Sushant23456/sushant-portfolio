@@ -5,14 +5,15 @@ import Navbar from './components/Navbar';
 import About from './components/About';
 import Skills from './components/Skills';
 import Timeline from './components/Timeline';
+// import Projects from './components/Projects';
 
 
 function App() {
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
-  const projectsRef = useRef(null); 
   const timelineRef = useRef(null);  
+  const projectsRef = useRef(null); 
   const contactRef = useRef(null);   
   const [nightMode, setNightMode] = useState(false);
 
@@ -28,8 +29,8 @@ function App() {
     { label: 'Home', ref: homeRef },
     { label: 'About', ref: aboutRef },
     { label: 'Skills', ref: skillsRef },
-    { label: 'Projects', ref: projectsRef }, 
     { label: 'Timeline', ref: timelineRef },  
+    { label: 'Projects', ref: projectsRef }, 
     { label: 'Contact', ref: contactRef },    
   ];
 
@@ -40,7 +41,7 @@ function App() {
       <div ref={aboutRef}><About nightMode={nightMode} /></div>
       <div ref={skillsRef}><Skills nightMode={nightMode} /></div>
       <div ref={timelineRef}><Timeline nightMode={nightMode} /></div>
-      <div ref={projectsRef}> {/* Projects component */}</div>
+      {/* <div ref={projectsRef}><Projects nightMode={nightMode}/></div> */}
       <div ref={contactRef}> {/* Contact component */}</div>
       {/* ... rest of your components */}
     </div>

@@ -210,9 +210,9 @@ const Home = ({ nightMode }) => {
               <Name>I'm Sushant Tiwari.</Name>
             </NameContainer>
             <Subtitle>Full Stack Developer | Tech Enthusiast</Subtitle>
-            <DownloadButton href="path-to-your-resume.pdf" download>
-              Download CV
-            </DownloadButton>
+            <DownloadButton href={`${process.env.PUBLIC_URL}/Sushant_Tiwari_Resume_1.pdf`} download>
+  My Resume
+</DownloadButton>
           </Content>
         </HomeContainer>
       );

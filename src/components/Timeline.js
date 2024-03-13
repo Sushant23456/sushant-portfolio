@@ -3,7 +3,7 @@ import { ReactComponent as SchoolIcon } from "./school.svg";
 import '../components/styles.css';
 
 import timelineElements from "./timelineElements";
-import {VerticalTimeline,VerticalTimelineElement,} from "react-vertical-timeline-component";
+import { VerticalTimeline, VerticalTimelineElement, } from "react-vertical-timeline-component";
 
 import "react-vertical-timeline-component/style.min.css";
 
@@ -32,7 +32,7 @@ function Timeline({ nightMode }) {
               dateClassName={`date ${nightMode ? 'night-date' : ''}`}
               iconStyle={isWorkIcon ? workIconStyles : schoolIconStyles}
               icon={isWorkIcon ? <WorkIcon /> : <SchoolIcon />}
-            >
+              >
               <h3 className="vertical-timeline-element-title">
                 {element.title}
               </h3>
@@ -41,12 +41,7 @@ function Timeline({ nightMode }) {
               </h5>
               <p id="description">{element.description}</p>
               {showButton && (
-                <a
-                  className={`button ${
-                    isWorkIcon ? "workButton" : "schoolButton"
-                  }`}
-                  href="/"
-                >
+                <a className={`button ${isWorkIcon ? "workButton" : "schoolButton"}`}href="/">
                   {element.buttonText}
                 </a>
               )}
