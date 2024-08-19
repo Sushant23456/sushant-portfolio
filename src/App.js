@@ -13,7 +13,7 @@ function App() {
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
   const timelineRef = useRef(null);  
-  const projectsRef = useRef(null); 
+  // const projectsRef = useRef(null); 
   const contactRef = useRef(null);   
   const [nightMode, setNightMode] = useState(false);
 
