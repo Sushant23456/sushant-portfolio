@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import About from './components/About';
 import Skills from './components/Skills';
 import Timeline from './components/Timeline';
-// import Projects from './components/Projects';
+import Projects from './components/Projects';
 
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
       <div ref={aboutRef}><About nightMode={nightMode} /></div>
       <div ref={skillsRef}><Skills nightMode={nightMode} /></div>
       <div ref={timelineRef}><Timeline nightMode={nightMode} /></div>
-      {/* <div ref={projectsRef}><Projects nightMode={nightMode}/></div> */}
+      <div ref={projectsRef}><Projects nightMode={nightMode}/></div>
       <div ref={contactRef}> {/* Contact component */}</div>
       {/* ... rest of your components */}
     </div>
